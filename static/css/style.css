@@ -37,6 +37,7 @@ button {
 .login-link, .register-link {
     text-align: center; 
     margin-top: 16px; 
+    font-size: 14px;
 }
 .login-container button:hover {
     background: #0056b3;
