@@ -46,9 +46,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php endif; ?>
         <form action="login.php" method="post">
             <label for="username">Tên đăng nhập:</label>
-            <input type="text" name="username" placeholder="username" required>
+            <input type="text" name="username" placeholder="Nhập tên đăng nhập" required>
             <label for="password">Mật khẩu:</label>
-            <input type="password" name="password" placeholder="password" required>
+            <input type="password" name="password" placeholder="Nhập mật khẩu" required>
             <button type="submit">Đăng nhập</button>
         </form>
         <div class="register-link">
