@@ -1,0 +1,162 @@
+/* assets/new_books.css */
+
+.new-books-section {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.page-main-title {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 2.5em;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 15px;
+}
+
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(180px, 1fr)
+  ); /* 5-6 cột trên màn hình lớn, tự động co giãn */
+  gap: 25px;
+  padding: 20px 0;
+}
+
+.book-item {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.book-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.book-item a {
+  text-decoration: none; /* Bỏ gạch chân cho toàn bộ item */
+  color: inherit; /* Kế thừa màu chữ */
+  display: block; /* Giúp toàn bộ khu vực có thể click */
+}
+
+.book-item img {
+  max-width: 100%;
+  height: 200px; /* Chiều cao cố định cho ảnh bìa */
+  object-fit: cover; /* Đảm bảo ảnh không bị méo */
+  border-radius: 5px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Bóng nhẹ cho ảnh bìa */
+}
+
+.book-item h3 {
+  font-size: 1.2em;
+  margin: 10px 0 5px;
+  color: #333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; /* Giới hạn tiêu đề trên một dòng */
+}
+
+.book-item p {
+  font-size: 0.9em;
+  color: #666;
+  margin-bottom: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; /* Giới hạn tác giả trên một dòng */
+}
+
+.detail-button {
+  display: inline-block;
+  background-color: #007bff;
+  color: white;
+  padding: 8px 15px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 0.9em;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: auto; /* Đẩy nút xuống dưới cùng */
+}
+
+.detail-button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.no-books-message {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+  margin-top: 20px;
+  font-size: 1.1em;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .book-grid {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(160px, 1fr)
+    ); /* 4-5 cột trên màn hình trung bình */
+  }
+}
+
+@media (max-width: 768px) {
+  .new-books-section {
+    margin: 15px;
+    padding: 15px;
+  }
+  .page-main-title {
+    font-size: 2em;
+  }
+  .book-grid {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(140px, 1fr)
+    ); /* 3-4 cột trên tablet */
+    gap: 15px;
+  }
+  .book-item img {
+    height: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .new-books-section {
+    margin: 10px;
+    padding: 10px;
+  }
+  .page-main-title {
+    font-size: 1.8em;
+  }
+  .book-grid {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(120px, 1fr)
+    ); /* 2-3 cột trên điện thoại */
+    gap: 10px;
+  }
+  .book-item {
+    padding: 10px;
+  }
+  .book-item img {
+    height: 150px;
+  }
+  .book-item h3 {
+    font-size: 1.1em;
+  }
+  .detail-button {
+    padding: 6px 10px;
+    font-size: 0.8em;
+  }
+}

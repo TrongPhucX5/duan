@@ -1,0 +1,104 @@
+/* assets/authors.css */
+
+.authors-section {
+  max-width: 960px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.page-main-title {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 2.5em;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 15px;
+}
+
+.author-list-grid {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(180px, 1fr)
+  ); /* 4 cột trên màn hình lớn, tự động co giãn */
+  gap: 15px; /* Khoảng cách giữa các item */
+}
+
+.author-item {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  text-align: center;
+  padding: 15px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.author-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.author-item a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+  font-size: 1.2em;
+  display: block; /* Đảm bảo toàn bộ khu vực item có thể click */
+  padding: 5px; /* Giúp dễ click hơn */
+}
+
+.author-item a:hover {
+  color: #0056b3;
+}
+
+.no-authors-message {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+  margin-top: 20px;
+  font-size: 1.1em;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .authors-section {
+    margin: 15px;
+    padding: 15px;
+  }
+  .page-main-title {
+    font-size: 2em;
+  }
+  .author-list-grid {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(150px, 1fr)
+    ); /* 3 cột trên tablet */
+  }
+}
+
+@media (max-width: 480px) {
+  .authors-section {
+    margin: 10px;
+    padding: 10px;
+  }
+  .page-main-title {
+    font-size: 1.8em;
+  }
+  .author-list-grid {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(120px, 1fr)
+    ); /* 2 cột trên điện thoại */
+  }
+  .author-item {
+    padding: 10px;
+  }
+  .author-item a {
+    font-size: 1em;
+  }
+}

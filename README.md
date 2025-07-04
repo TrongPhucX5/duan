@@ -1,1 +1,3 @@
 # duan
+ALTER TABLE books ADD COLUMN file_data LONGBLOB;
+ALTER TABLE books ADD COLUMN file_name VARCHAR(255);

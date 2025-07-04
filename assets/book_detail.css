@@ -1,0 +1,361 @@
+/* assets/book_detail.css */
+
+.book-detail-container {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 25px;
+  background-color: #fff;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  display: flex; /* Dùng flexbox cho container chính */
+  flex-wrap: wrap; /* Cho phép các phần tử xuống dòng trên màn hình nhỏ */
+  gap: 30px; /* Khoảng cách giữa bìa sách và thông tin */
+  align-items: flex-start; /* Căn trên cùng */
+}
+
+.book-cover {
+  /* Đã đổi từ .book-cover-wrapper */
+  flex: 0 0 250px; /* Chiều rộng cố định cho ảnh bìa */
+  border: 1px solid #eee;
+  padding: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #fff;
+  overflow: hidden; /* Đảm bảo ảnh không tràn ra ngoài */
+  display: flex; /* Để căn giữa ảnh */
+  justify-content: center; /* Căn giữa ảnh */
+  align-items: center; /* Căn giữa ảnh */
+}
+
+.book-cover img {
+  max-width: 100%;
+  height: auto;
+  max-height: 350px; /* Giới hạn chiều cao để ảnh không quá lớn */
+  display: block;
+  border-radius: 5px;
+}
+
+.book-info {
+  /* Đã đổi từ .book-details-content */
+  flex: 1; /* Cho phép phần nội dung chiếm hết không gian còn lại */
+  min-width: 300px; /* Chiều rộng tối thiểu cho phần nội dung */
+}
+
+.book-info h1 {
+  font-size: 2.5em;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+}
+
+.book-info p {
+  font-size: 1.1em;
+  color: #555;
+  margin-bottom: 8px;
+  line-height: 1.5; /* Khoảng cách dòng */
+}
+
+.book-info p strong {
+  color: #333;
+}
+
+.book-info p span {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.book-actions {
+  /* Đã đổi từ .book-buttons */
+  display: flex; /* Dùng flexbox để căn chỉnh các nút */
+  gap: 15px; /* Khoảng cách giữa các nút */
+  margin: 25px 0;
+  flex-wrap: wrap; /* Cho phép nút xuống dòng trên màn hình nhỏ */
+  align-items: center; /* Căn giữa theo chiều dọc */
+}
+
+/* Các nút hành động chung */
+.action-button,
+.comments-section .button,
+.book-detail-container .button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-decoration: none; /* Dành cho thẻ a */
+  display: inline-flex; /* Đảm bảo padding hoạt động với thẻ a/button */
+  align-items: center;
+  justify-content: center;
+  text-align: center; /* Đảm bảo text ở giữa */
+  white-space: nowrap; /* Ngăn không cho chữ xuống dòng */
+  box-sizing: border-box; /* Đảm bảo padding không làm tăng kích thước */
+}
+
+.read-book-button {
+  background-color: #28a745; /* Green */
+  color: white;
+}
+
+.read-book-button:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
+}
+
+.download-book-button {
+  background-color: #007bff; /* Blue */
+  color: white;
+}
+
+.download-book-button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.favorite-button {
+  background-color: #ffc107; /* Yellow */
+  color: #333;
+}
+
+.favorite-button:hover:not(.disabled) {
+  background-color: #e0a800;
+  transform: translateY(-2px);
+}
+
+.favorite-button.active {
+  /* Đã đổi từ .favorited sang .active */
+  background-color: #6c757d; /* Grey when favorited */
+  color: white;
+  cursor: pointer;
+}
+.favorite-button.active:hover {
+  background-color: #5a6268;
+  transform: translateY(-2px);
+}
+
+.favorite-button.disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Để form yêu thích nằm cùng hàng với các nút khác */
+.favorite-form-inline {
+  display: inline-block; /* Hoặc display: flex; để căn chỉnh tốt hơn nếu có các phần tử khác trong form */
+  margin: 0; /* Loại bỏ margin mặc định */
+  padding: 0; /* Loại bỏ padding mặc định */
+}
+
+.no-file-message {
+  color: #dc3545; /* Red */
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.description {
+  margin-top: 20px;
+}
+
+.description strong {
+  font-size: 1.2em;
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* PDF Viewer Styles */
+.pdf-viewer-container {
+  margin-top: 30px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background-color: #f0f0f0;
+}
+
+.pdf-viewer-header {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2em;
+}
+
+.pdf-viewer-header h2 {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.close-pdf-viewer-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.8em;
+  cursor: pointer;
+  padding: 5px 10px;
+  transition: transform 0.2s ease;
+}
+
+.close-pdf-viewer-button:hover {
+  transform: rotate(90deg);
+}
+
+iframe#pdfViewerFrame {
+  display: block; /* Loại bỏ khoảng trắng dưới iframe */
+  background-color: #fff;
+}
+
+/* Comments Section Styles */
+.comments-section {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 25px;
+  background-color: #fff;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.comments-section h2 {
+  text-align: center;
+  font-size: 2em;
+  color: #333;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+}
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.comment-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1em;
+  box-sizing: border-box;
+  resize: vertical;
+  min-height: 100px;
+}
+
+.comment-form .button {
+  align-self: flex-end; /* Căn nút "Gửi bình luận" sang phải */
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  width: auto; /* Tự động điều chỉnh chiều rộng */
+}
+.comment-form .button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.comments-list {
+  margin-top: 20px;
+}
+
+.comment-item {
+  background-color: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+}
+
+.comment-item p {
+  margin: 0 0 5px 0;
+  line-height: 1.6;
+}
+
+.comment-author {
+  font-weight: bold;
+  color: #007bff;
+  margin-right: 10px;
+}
+
+.comment-date {
+  font-size: 0.9em;
+  color: #888;
+}
+
+.comment-content {
+  color: #444;
+  margin-top: 10px !important; /* Đảm bảo khoảng cách */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .book-detail-container,
+  .comments-section {
+    margin: 20px;
+    padding: 15px;
+  }
+  .book-info h1 {
+    font-size: 2em;
+    text-align: center;
+  }
+  .book-cover {
+    flex: none; /* Bỏ cố định chiều rộng */
+    max-width: 200px; /* Giới hạn chiều rộng tối đa */
+    margin: 0 auto; /* Căn giữa bìa sách */
+  }
+  .book-info {
+    min-width: unset; /* Bỏ chiều rộng tối thiểu */
+    text-align: center;
+  }
+  .book-actions {
+    justify-content: center; /* Căn giữa các nút */
+    gap: 10px;
+  }
+  .action-button,
+  .comment-form .button {
+    padding: 10px 20px;
+    font-size: 0.9em;
+  }
+  .description,
+  .book-info p {
+    text-align: left; /* Để mô tả vẫn đọc được dễ dàng */
+  }
+  .comments-section h2 {
+    font-size: 1.8em;
+  }
+  iframe#pdfViewerFrame {
+    height: 450px; /* Chiều cao nhỏ hơn trên mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .book-detail-container,
+  .comments-section {
+    margin: 10px;
+    padding: 10px;
+  }
+  .book-info h1 {
+    font-size: 1.8em;
+  }
+  .book-info p,
+  .description p,
+  .comment-item p {
+    font-size: 0.95em;
+  }
+  .book-actions {
+    flex-direction: column; /* Xếp chồng các nút */
+    gap: 10px;
+  }
+  .action-button,
+  .comment-form .button {
+    width: 100%; /* Các nút chiếm toàn bộ chiều rộng */
+    padding: 10px 15px;
+  }
+  .comments-section h2 {
+    font-size: 1.5em;
+  }
+}

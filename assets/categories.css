@@ -1,0 +1,141 @@
+/* assets/categories.css */
+
+.category-grid-section {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.page-main-title {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 2.5em;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 15px;
+}
+
+.category-title-heading {
+  text-align: center;
+  color: #007bff;
+  margin-bottom: 25px;
+  font-size: 2em;
+}
+
+/* Kiểu cho mỗi cột danh mục khi hiển thị tất cả */
+.category-column-item {
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease-in-out;
+}
+
+.category-column-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.category-column-title {
+  font-size: 1.8em;
+  margin-top: 0;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.category-column-title a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.category-column-title a:hover {
+  color: #0056b3;
+}
+
+/* Kiểu cho danh sách sách trong mỗi danh mục */
+.book-list-compact,
+.book-list-by-category {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 15px;
+}
+
+.book-list-compact li,
+.book-list-by-category li {
+  margin-bottom: 8px;
+}
+
+.book-list-compact li a,
+.book-list-by-category li a {
+  text-decoration: none;
+  color: #444;
+  font-size: 1.1em;
+  transition: color 0.2s ease;
+}
+
+.book-list-compact li a:hover,
+.book-list-by-category li a:hover {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.view-all-link {
+  text-align: right;
+  margin-top: 10px;
+}
+
+.view-all-link a {
+  color: #28a745; /* Màu xanh lá cây */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.view-all-link a:hover {
+  text-decoration: underline;
+  color: #218838;
+}
+
+.no-books-message {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+  margin-top: 20px;
+  font-size: 1.1em;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .category-grid-section {
+    margin: 15px;
+    padding: 15px;
+  }
+  .page-main-title {
+    font-size: 2em;
+  }
+  .category-title-heading {
+    font-size: 1.8em;
+  }
+  .category-column-title {
+    font-size: 1.5em;
+  }
+}
+
+@media (max-width: 480px) {
+  .category-grid-section {
+    margin: 10px;
+    padding: 10px;
+  }
+  .page-main-title {
+    font-size: 1.8em;
+  }
+  .category-column-item {
+    padding: 15px;
+  }
+}

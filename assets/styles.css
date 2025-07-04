@@ -1,19 +1,53 @@
-/* styles.css cải tiến */
+/* assets/styles.css - Cải tiến toàn diện */
+
+/* --- Cấu hình CSS Reset & Variables --- */
+:root {
+  --primary-color: #007bff;
+  --primary-dark: #0056b3;
+  --secondary-color: #1e1e1e;
+  --text-color: #333;
+  --light-text-color: #666;
+  --background-light: #f5f7fa;
+  --background-dark: #f0f2f5;
+  --border-color: #ddd;
+  --shadow-light: rgba(0, 0, 0, 0.05);
+  --shadow-medium: rgba(0, 0, 0, 0.1);
+
+  /* Chiều cao ước tính cho header và footer để tính toán min-height cho main */
+  --header-height-estimate: 120px; /* Tổng chiều cao của .top-bar và .main-nav */
+  --footer-height-estimate: 80px; /* Chiều cao của footer */
+}
+
+* {
+  box-sizing: border-box; /* Bao gồm padding và border vào kích thước tổng thể */
+}
 
 body {
   margin: 0;
   padding: 0;
-  font-family: Roboto, Arial, sans-serif;
-  background-color: #f5f7fa;
-  color: #333;
+  font-family: "Roboto", Arial, sans-serif;
+  background-color: var(--background-light);
+  color: var(--text-color);
   line-height: 1.6;
 }
 
+/* --- Header Section --- */
 header {
   background: linear-gradient(to bottom, #f1f1f1 0%, #ffffff 100%);
-  padding: 25px 30px 0;
-  text-align: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  padding: 0;
+  box-shadow: 0 2px 4px var(--shadow-light);
+  width: 100%; /* Đảm bảo header chiếm toàn bộ chiều rộng */
+  z-index: 1000; /* Đảm bảo header nằm trên các phần tử khác */
+  position: relative; /* Cho phép z-index hoạt động */
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  max-width: 1200px; /* Giới hạn chiều rộng nội dung header */
+  margin: 0 auto; /* Căn giữa nội dung header */
 }
 
 .logo a {
@@ -23,23 +57,76 @@ header {
   font-weight: 700;
 }
 
-.main-nav {
-  background: #1e1e1e;
-  padding-top: 15px;
-  margin-top: 15px;
+.login-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 15px;
+}
+.login-container a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
 }
 
-.main-nav ul {
+.login-container a:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+.login-container span {
+  color: var(--light-text-color);
+  font-weight: normal;
+}
+
+.main-nav {
+  /* Thay đổi màu nền sang màu chuyển (gradient) hoặc màu sáng */
+  background: linear-gradient(
+    to right,
+    #4a90e2,
+    #7abeff
+  ); /* Ví dụ màu chuyển xanh */
+  /* Nếu bạn chỉ muốn màu sáng đơn sắc, hãy dùng: background-color: #e0f2f7; */
+
+  padding: 15px 30px; /* Thêm padding để nội dung có không gian */
+  display: flex; /* Biến main-nav thành flex container để sắp xếp các mục */
+  justify-content: space-between; /* Đẩy menu sang trái, search box sang phải */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Thêm bóng nhẹ cho thanh nav */
+  margin-top: 0; /* Đảm bảo không có margin phía trên */
+  max-width: 100%; /* Đảm bảo chiếm toàn bộ chiều rộng */
+}
+
+.main-nav .nav-links {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */ /* Bỏ căn giữa các liên kết menu để chúng linh hoạt hơn */
   gap: 40px;
   flex-wrap: wrap;
 }
 
-.main-nav ul li a {
+.main-nav .nav-links li a {
+  color: white; /* Đổi màu chữ thành trắng để dễ nhìn trên nền xanh */
+  text-decoration: none;
+  font-size: 16px;
+  padding: 8px 0; /* Giảm padding một chút */
+  display: inline-block;
+  position: relative;
+  transition: color 0.2s ease-in-out;
+}
+
+.main-nav .nav-links li a:hover,
+.main-nav .nav-links li a.active {
+  color: #f0f0f0; /* Màu khi hover */
+  font-weight: bold;
+}
+
+/* Xóa hoặc sửa lại nếu bạn vẫn dùng ul li a mà không có class nav-links */
+/* Hiện tại, selector .main-nav .nav-links li a đã bao phủ */
+/* .main-nav ul li a {
   color: #ccc;
   text-decoration: none;
   font-size: 16px;
@@ -53,79 +140,30 @@ header {
 .main-nav ul li a.active {
   color: #fff;
   font-weight: bold;
-}
+} */
 
-.main-nav ul li a.active::after {
+.main-nav .nav-links li a.active::after {
   content: "";
   display: block;
   width: 30px;
   height: 6px;
-  background: #28aef3;
+  background: #ffd180;
   margin: 6px auto 0;
   border-radius: 3px;
 }
 
-/* Dropdown menu cho Danh Mục */
-.main-nav .dropdown {
-  position: relative;
-}
-.main-nav .dropdown-content {
-  display: none;
-  position: absolute;
-  left: 0;
-  top: 100%;
-  background: #fff;
-  min-width: 220px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-  padding: 15px 25px;
-  z-index: 100;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.main-nav .dropdown-content.open {
-  display: flex;
-}
-.dropdown-arrow {
-  margin-left: 6px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: transform 0.2s;
-  user-select: none;
-}
-.dropdown-arrow.active {
-  transform: rotate(180deg);
-}
-.main-nav .dropdown-content a {
-  color: #222;
-  text-decoration: none;
-  font-size: 15px;
-  padding: 4px 0;
-  transition: color 0.2s;
-}
-.main-nav .dropdown-content a:hover {
-  color: #007bff;
-}
-
-.search-section {
-  padding: 25px;
-  text-align: center;
-  background-color: #eaf4ff;
-  border-bottom: 1px solid #d0e0f0;
-}
-
-.search-section input[type="text"] {
+/* Thay thế toàn bộ .search-section bằng .search-box mới */
+/* .search-section input[type="text"] {
   padding: 12px;
   width: 300px;
   font-size: 16px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border-color);
   border-radius: 6px;
 }
 
 .search-section button {
   padding: 12px 24px;
-  background-color: #007bff;
+  background-color: var(--primary-color);
   color: white;
   border: none;
   font-size: 16px;
@@ -136,9 +174,54 @@ header {
 }
 
 .search-section button:hover {
-  background-color: #0056b3;
+  background-color: var(--primary-dark);
+} */
+
+/* CSS mới cho thanh tìm kiếm */
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Khoảng cách giữa input và button */
 }
 
+.search-box input[type="text"] {
+  padding: 8px 15px;
+  width: 250px; /* Điều chỉnh chiều rộng input tìm kiếm */
+  font-size: 15px;
+  border: 1px solid #cceeff; /* Viền nhẹ nhàng hơn */
+  border-radius: 20px; /* Bo tròn viền */
+  transition: all 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.9); /* Hơi trong suốt */
+  color: var(--text-color);
+}
+
+.search-box input[type="text"]::placeholder {
+  color: #888;
+}
+
+.search-box input[type="text"]:focus {
+  border-color: #004d80;
+  box-shadow: 0 0 0 3px rgba(0, 77, 128, 0.2);
+  outline: none;
+}
+
+.search-box button {
+  padding: 8px 18px;
+  background-color: #004d80; /* Màu xanh đậm hơn cho nút */
+  color: white;
+  border: none;
+  border-radius: 20px; /* Bo tròn viền nút */
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.search-box button:hover {
+  background-color: #00335a;
+  transform: translateY(-1px);
+}
+
+/* --- Banner Section --- */
 .banner img {
   width: 100%;
   max-height: 280px;
@@ -147,8 +230,11 @@ header {
   border-bottom: 2px solid #28aef3;
 }
 
+/* --- Main Content (excluding form pages) --- */
 main {
   padding: 40px 20px;
+  max-width: 1200px; /* Giới hạn chiều rộng nội dung chính */
+  margin: 0 auto; /* Căn giữa nội dung chính */
 }
 
 h2 {
@@ -167,22 +253,25 @@ h2 {
 
 .book-item {
   background: white;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   width: 180px;
   text-align: center;
   padding: 15px;
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 6px var(--shadow-light);
   transition: transform 0.2s ease-in-out;
 }
 
 .book-item:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 12px var(--shadow-medium);
 }
 
 .book-item img {
   width: 100%;
+  /* Đặt chiều cao cố định và object-fit để ảnh không bị biến dạng */
+  height: 200px; /* Đặt chiều cao cố định cho ảnh bìa */
+  object-fit: cover; /* Rất quan trọng để ảnh không bị biến dạng và lấp đầy khung */
   border-radius: 8px;
   margin-bottom: 12px;
 }
@@ -192,12 +281,24 @@ h2 {
   font-weight: bold;
   font-size: 16px;
   margin: 10px 0 6px;
+  /* Bổ sung để giới hạn số dòng cho tiêu đề */
+  min-height: 40px; /* Đảm bảo đủ chỗ cho 2 dòng nếu cần */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Giới hạn tối đa 2 dòng */
+  -webkit-box-orient: vertical;
 }
 
 .book-item p {
   font-size: 14px;
-  color: #666;
+  color: var(--light-text-color);
   margin-bottom: 10px;
+  /* Bổ sung để giới hạn số dòng cho tác giả */
+  min-height: 20px; /* Đảm bảo đủ chỗ cho 1 dòng */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; /* Đảm bảo chỉ 1 dòng và cắt bỏ nếu quá dài */
 }
 
 .book-item a {
@@ -206,6 +307,7 @@ h2 {
   font-weight: bold;
 }
 
+/* --- Footer Section --- */
 footer {
   background-color: #003366;
   color: white;
@@ -217,11 +319,12 @@ footer {
 footer ul {
   list-style: none;
   padding: 0;
-  margin: 15px 0 0;
+  margin: 15px auto 0; /* Căn giữa footer menu */
   display: flex;
   justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
+  max-width: 1200px; /* Giới hạn chiều rộng footer menu */
 }
 
 footer ul li a {
@@ -235,116 +338,185 @@ footer ul li a:hover {
   color: #28aef3;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .book-list {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .main-nav ul {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .search-section input[type="text"] {
-    width: 90%;
-    max-width: 400px;
-  }
-}
-
-.login-container,
-.register-container {
-  width: 300px;
-  margin: 100px auto;
+/* --- Form Pages Specific Styling (login, register, forgot, reset) --- */
+.form-page-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Sử dụng biến CSS để tính toán min-height, giúp form luôn ở giữa */
+  min-height: calc(
+    100vh - var(--header-height-estimate) - var(--footer-height-estimate)
+  );
   padding: 20px;
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: var(--background-dark); /* Nền nhẹ hơn cho trang form */
 }
 
-.login-container h2,
-.register-container h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.login-container label,
-.register-container label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.login-container input[type="text"],
-.login-container input[type="password"],
-.register-container input[type="text"],
-.register-container input[type="password"],
-.register-container input[type="email"] {
-  width: calc(100% - 20px);
-  padding: 10px;
-  margin-bottom: 15px;
-  border-radius: 3px;
-  border: 1px solid #ccc;
-}
-
-.login-container button,
-.register-container button {
+.form-container {
+  background-color: #ffffff;
+  padding: 35px 40px; /* Tăng padding để form rộng rãi hơn */
+  border-radius: 12px;
+  box-shadow: 0 8px 20px var(--shadow-medium); /* Bóng đổ mạnh hơn */
   width: 100%;
-  padding: 10px;
-  background-color: #28a745;
+  max-width: 420px; /* Giới hạn chiều rộng tối đa của form */
+  text-align: center;
+}
+
+.form-container h2 {
+  font-size: 28px;
+  color: #003366;
+  margin-bottom: 25px;
+  font-weight: 700;
+}
+
+.auth-form .form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.auth-form label {
+  display: block;
+  font-size: 15px;
+  color: var(--light-text-color);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.auth-form input[type="text"],
+.auth-form input[type="password"],
+.auth-form input[type="email"] {
+  width: 100%; /* Chiếm toàn bộ chiều rộng của form-group */
+  padding: 12px 15px; /* Padding bên trong input */
+  font-size: 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auth-form input[type="text"]:focus,
+.auth-form input[type="password"]:focus,
+.auth-form input[type="email"]:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+  outline: none;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 14px;
+  background-color: var(--primary-color);
   color: white;
   border: none;
-  border-radius: 3px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 600;
   cursor: pointer;
-  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 15px;
 }
 
-.login-container button:hover,
-.register-container button:hover {
-  background-color: #218838;
+.submit-button:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+.form-footer {
+  margin-top: 25px;
+  font-size: 15px;
+  color: var(--light-text-color);
+}
+
+.form-footer a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.form-footer a:hover {
+  text-decoration: underline;
 }
 
 .message {
-  color: red;
-  text-align: center;
-}
-
-.register-link {
-  text-align: center;
-  margin-top: 10px;
-}
-
-/* log-container */
-.log-container {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  border: 1px solid #e0e0e0;
-  border-radius: 20px;
-  padding: 8px 18px;
-  background: #007bff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  position: absolute;
-  right: 40px;
-  top: 20px;
-}
-
-.log-container a {
-  color: #fff;
-  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-size: 15px;
+  text-align: left;
+  border: 1px solid transparent;
   font-weight: 500;
-  padding: 4px 10px;
-  border-radius: 4px;
-  transition: background 0.2s;
 }
 
-.log-container a:hover {
-  background: #eaf4ff;
-  color: #0056b3;
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  border-color: #f5c6cb;
 }
 
-.log-container span {
-  margin-right: 8px;
-  color: #333;
-  font-weight: 500;
+.success-message {
+  background-color: #d4edda;
+  color: #155724;
+  border-color: #c3e6cb;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  .top-bar {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+  }
+
+  .login-container {
+    margin-top: 10px;
+    justify-content: center;
+  }
+
+  .main-nav {
+    flex-direction: column; /* Xếp menu và search box chồng lên nhau */
+    align-items: center;
+    gap: 15px; /* Khoảng cách giữa menu và search box */
+    padding: 15px 15px; /* Điều chỉnh padding */
+  }
+
+  .main-nav .nav-links {
+    flex-direction: column; /* Xếp các mục menu chồng lên nhau */
+    gap: 10px;
+  }
+
+  .search-box {
+    /* Thay thế search-section cũ */
+    width: 100%; /* Chiếm toàn bộ chiều rộng có thể */
+    justify-content: center; /* Căn giữa input và button */
+  }
+
+  .search-box input[type="text"] {
+    width: 80%; /* Giảm chiều rộng input trên mobile */
+    max-width: 300px; /* Giới hạn tối đa */
+  }
+
+  /* Responsive cho Form Container */
+  .form-page-main {
+    padding: 0; /* Bỏ padding trên main để form phủ hết chiều rộng trên di động */
+    min-height: calc(
+      100vh - var(--header-height-estimate-mobile, 80px) -
+        var(--footer-height-estimate, 80px)
+    ); /* Điều chỉnh cho mobile */
+  }
+  .form-container {
+    padding: 25px 20px; /* Giảm padding trên màn hình nhỏ */
+    border-radius: 0; /* Có thể bỏ bo tròn góc để form phủ hết chiều rộng */
+    box-shadow: none; /* Bỏ bóng đổ trên màn hình nhỏ */
+    max-width: 100%; /* Đảm bảo chiếm toàn bộ chiều rộng có thể */
+    height: 100vh; /* Có thể làm cho form chiếm toàn bộ chiều cao trên di động */
+    display: flex; /* Sử dụng flex để căn giữa nội dung bên trong */
+    flex-direction: column;
+    justify-content: center;
+  }
+  .form-container h2 {
+    font-size: 24px;
+  }
+  /* Biến cho mobile header height nếu cần */
+  :root {
+    --header-height-estimate-mobile: 80px; /* Chiều cao header ước tính trên mobile */
+  }
 }
